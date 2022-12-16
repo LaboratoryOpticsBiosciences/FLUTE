@@ -33,7 +33,7 @@ An example of various analyses can be seen here:
 <div align="center">
 <img src="icons/Demonstration.PNG" width="600" align="center">
 
-*Intensity colourmap (left), phase colourmap (middle), and modulus colourmap (right) of the same data*
+*Intensity colourmap (left), nodulus colourmap (middle), and phase colourmap (right) of the same data*
 </div>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
