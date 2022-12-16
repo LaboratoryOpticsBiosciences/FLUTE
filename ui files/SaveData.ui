@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>492</width>
+    <height>170</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Save Data</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background: rgb(6,15,19);</string>
+  </property>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>321</width>
+     <height>161</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <property name="leftMargin">
+     <number>9</number>
+    </property>
+    <property name="topMargin">
+     <number>9</number>
+    </property>
+    <property name="rightMargin">
+     <number>9</number>
+    </property>
+    <property name="bottomMargin">
+     <number>9</number>
+    </property>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="AllData">
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+
+            border: 4px solid '#4aa3d1';
+            background: '#4aa3d1';
+            color: white;
+            font-family: 'Helvetica';
+            font-size: 15px;
+            padding: 0px 0;
+            margin-top: 0px
+}
+QPushButton:hover{
+	background: '#173953';
+     border: 4px solid '#173953'
+}
+</string>
+      </property>
+      <property name="text">
+       <string>All Colormaps</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="CurrentData">
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+
+            border: 4px solid '#4aa3d1';
+            background: '#4aa3d1';
+            color: white;
+            font-family: 'Helvetica';
+            font-size: 15px;
+            padding: 0px 0;
+            margin-top: 0px
+}
+QPushButton:hover{
+	background: '#173953';
+     border: 4px solid '#173953'
+}</string>
+      </property>
+      <property name="text">
+       <string>Currently Displayed</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="2">
+     <widget class="QLabel" name="label_3">
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #FFFFFF</string>
+      </property>
+      <property name="text">
+       <string>Save all colormaps, or only save currently displayed colormap data</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
