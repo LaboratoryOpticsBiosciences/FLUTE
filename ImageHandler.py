@@ -425,7 +425,6 @@ class ImageHandler:
 		omega = 2 * np.pi * self.freq / 1000
 		tau_p = 1 / omega * arr
 		tau_p[mask] = float("nan")
-		np.nan_to_num(tau_p, copy=False)
 		if save_type == 'all' or (save_type == 'current' and colormap == 2):
 			tifffile.imsave(file + '/' + self.name + '_TauP.tiff', tau_p)
 

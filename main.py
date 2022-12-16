@@ -156,6 +156,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.load_data(data)
 
     def range_lines(self):
+        """Turns on and off the thresholding lines on the plot when you check ShowRangeLines on the window"""
         selection = self.tableWidget.selectionModel().selectedRows()
         for i in selection:
             self.image_arr[i.row()].show_lines(self.ShowRangeLines.isChecked())
@@ -313,6 +314,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.animation.start()
 
     def resizeEvent(self, event):
+        """Runs when the window is resized."""
         windwWidth = event.size().width()
         windwHeight = event.size().height()
         frameSize = int((event.size().height()-63)/2.5)
@@ -440,6 +442,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.image_arr[i.row()].update_circle_range(min_m*100, max_m*100)
 
     def frac_entry(self):
+        """Opens entry box for fraction colourmapping"""
         min_frac = float(self.frac_min.text().replace(",","."))
         max_frac = float(self.frac_max.text().replace(",","."))
         self.fractionSlider.setHigh(int(max_frac * 100))
@@ -497,6 +500,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.image_arr[i].graph_window.Plot.canvas.mpl_disconnect(self.image_arr[i].binding_id)
 
     def save_data_popup(self):
+        """Opens the save data window and connects buttons"""
         self.save_window = DataWindows.SaveWindow()
         self.save_window.AllData.clicked.connect(lambda: self.save_data('all'))
         self.save_window.CurrentData.clicked.connect(lambda: self.save_data('current'))
@@ -560,6 +564,8 @@ if __name__ == "__main__":
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
     if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
+    myappid = 'LOB.FLUTE.1.0'  # arbitrary string
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
     app = QtWidgets.QApplication(sys.argv)
     app.setWindowIcon(QIcon((resource_path(dir_path + "/icons/logo.ico"))))
     window = MainWindow()
