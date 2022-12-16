@@ -398,6 +398,7 @@ class ImageHandler:
 		self.change_colormap(self.color_map_select)
 		self.apply_masks()
 		image = Image.fromarray(self.displayImage)
+
 		if save_type == 'all' or (save_type == 'current' and colormap == 4):
 			image.save(file + '/' + self.name + '_image_Fraction.tif')
 			self.graph_window.save_fig(file + '/' + self.name + '_graph_Fraction.png')
@@ -435,10 +436,11 @@ class ImageHandler:
 		if save_type == 'all' or (save_type == 'current' and colormap == 1):
 			tifffile.imsave(file + '/' + self.name + '_TauM.tiff', tau_m)
 
+		frac = self.fraction_arr.copy()
+		frac[mask] = float("nan")
 		if save_type == 'all' or (save_type == 'current' and colormap == 4):
-			frac = self.fraction_arr.copy()
-			frac[mask] = float("nan")
 			tifffile.imsave(file + '/' + self.name + '_Frac.tiff', frac)
+
 		save_params = [f'number Of 3x3 Median Filters: {self.num_filter}\n',
 					   f'Intensity Min: {self.min_thresh:.3f}\n',
 					   f'Intensity Max: {self.max_thresh:.3f}\n',

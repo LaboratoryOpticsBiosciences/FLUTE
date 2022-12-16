@@ -117,7 +117,7 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             self.load_dict = {'FLIM Load': '', "Cal Load": '', "Bin Width": 0.227, "Freq": 80.0, "Tau Ref": 4.0,
                               "Harmonic": 1.0, "Phi Cal": 0.0, "M Cal": 1.0,"Fraction": 0.4, "save_Dir": '', "FractionX": 1.0, "FractionY":0.0,
-                              "framex": 611, "framey": 505, "table0Width": 290, "table1Width": 50, "table2Width": 143}
+                              "framex": 611, "framey": 510, "table0Width": 290, "table1Width": 50, "table2Width": 143}
             with open('saved_dict.pkl', 'wb') as f:
                 pickle.dump(self.load_dict, f)
         f.close()
