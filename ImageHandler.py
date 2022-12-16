@@ -373,6 +373,8 @@ class ImageHandler:
 		if save_type == 'all' or (save_type == 'current' and colormap == 0):
 			image.save(file + '/' + self.name + '_image_Intensity.tif')
 			self.graph_window.save_fig(file + '/' + self.name + '_graph_density.png')
+		if save_type == 'all' or (save_type == 'current' and colormap == 3):
+			self.graph_window.save_fig(file + '/' + self.name + '_graph_density.png')
 		self.color_map_select = 1
 		self.change_colormap(self.color_map_select)
 		self.apply_masks()
@@ -387,13 +389,12 @@ class ImageHandler:
 		if save_type == 'all' or (save_type == 'current' and colormap == 2):
 			image.save(file + '/' + self.name + '_image_TauP.tif')
 			self.graph_window.save_fig(file + '/' + self.name + '_graph_TauP.png')
+		self.color_map_select = 3
+		self.apply_masks()
+		image = Image.fromarray(self.displayImage)
 		if save_type == 'all' or (save_type == 'current' and colormap == 3):
-			self.color_map_select = 3
-			self.apply_masks()
-			image = Image.fromarray(self.displayImage)
 			image.save(file + '/' + self.name + '_image_Jet.tif')
-			if save_type == 'current':
-				self.graph_window.save_fig(file + '/' + self.name + '_graph_density.png')
+			# self.graph_window.save_fig(file + '/' + self.name + '_graph_density.png')
 		self.color_map_select = 4
 		self.change_colormap(self.color_map_select)
 		self.apply_masks()
