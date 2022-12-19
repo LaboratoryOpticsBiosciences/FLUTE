@@ -33,7 +33,7 @@ An example of various analyses can be seen here:
 <div align="center">
 <img src="icons/Demonstration.PNG" align="center">
 
-*Intensity colourmap with reagion selection, phase colourmap, modulus colourmap, and fraction colourmap of the same data*
+*Intensity colourmap with reagion selection, phase colourmap, modulus colourmap, and fraction colourmap of the same data. Sacle bar is 150 um.*
 </div>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
