@@ -31,9 +31,9 @@ Fluorescence Lifetime Ultimate Explorer (FLUTE) provides a graphical user interf
 An example of various analyses can be seen here:
 
 <div align="center">
-<img src="icons/Demonstration.PNG" width="600" align="center">
+<img src="icons/Demonstration.PNG" align="center">
 
-*Intensity colourmap (left), nodulus colourmap (middle), and phase colourmap (right) of the same data*
+*Intensity colourmap with reagion selection, phase colourmap, modulus colourmap, and fraction colourmap of the same data*
 </div>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -69,14 +69,11 @@ Data must be saved as a tiff-stack, where each page of the stack represents a bi
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Working Principle
+## User manual and publication
 
-FLUTE is based on the phasor analysis presented here:
+A detailed user manual is available in the supplemental material of the associated publication:
 
-<a id="1">[1]</a> 
-Chiara Stringari, Amanda Cinquin, Olivier Cinquin, Michelle A. Digman, Peter J. Donovan, & Enrico Gratton (2011). Phasor approach to fluorescence lifetime microscopy distinguishes different metabolic states of germ cells in a live tissue. Proceedings of the National Academy of Sciences, 108(33), 13582-13587.
-
-where the g and s coordinates are found by taking the fourier transform of the decay data, and plotting with the real components on the x, and the imaginary components on the y. 
+Please cite this article if you found FLUTE helpful with your data analysis.
 
 
 
