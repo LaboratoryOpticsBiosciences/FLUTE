@@ -26,7 +26,7 @@
 <img src="icons/MainWindow.PNG" width="500"> 
 </div>
 
-Fluorescence Lifetime Ultimate Explorer (FLUTE) provides a graphical user interface to explore fluorescence lifetime data using phasor analysis. The GUI allows for quick and interactive exploration and analysis of experimental data, and can export results for further processing. 
+Fluorescence Lifetime Ultimate Explorer (FLUTE) provides a graphical user interface to explore fluorescence lifetime data using phasor analysis. The GUI allows for quick and interactive analysis of experimental data, and can export results for further processing. 
 
 An example of various FLIM data visualisation and analyses can be seen here:
 
@@ -65,7 +65,7 @@ To run the code from this github page, run main.py after installing:
 
 ### Prerequisites
 
-Data must be saved as a tiff-stack, where each page of the stack represents a bin in the measurement of the fluorescence decay. Example data is avilable in the supplemental data of the release publication.
+Data must be saved as a tiff-stack, where each image of the stack represents a temporal bin of the fluoresvence decay measurement. Example data is avilable in the supplemental data of the release publication.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
