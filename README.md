@@ -26,7 +26,7 @@
 <img src="icons/MainWindow.PNG" width="500"> 
 </div>
 
-Fluorescence Lifetime Ultimate Explorer (FLUTE) provides a graphical user interface to explore fluorescence lifetime data using phasor analysis. The GUI allows for quick and interactive analysis of experimental data, and can export results for further processing. 
+Fluorescence Lifetime Ultimate Explorer (FLUTE) provides a graphical user interface to explore fluorescence lifetime data using phasor analysis. The GUI allows for quick and interactive analysis of experimental Fluorescence Lifetime Microscopy (FLIM) data, and can export results for further processing. 
 
 An example of various FLIM data visualisation and analyses can be seen here:
 
