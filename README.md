@@ -11,7 +11,7 @@
   </a>
 
   <p align="center">
-    An exploration tool for FLIM data
+    An exploration tool for Fluorescence Lifetime Microscopy (FLIM) data
     <br />
     <a href="https://github.com/DaleLOB/FLUTE"><strong>Explore the docs »</strong></a>
     <br />
@@ -26,14 +26,14 @@
 <img src="icons/MainWindow.PNG" width="500"> 
 </div>
 
-Fluorescence Lifetime Ultimate Explorer (FLUTE) provides a graphical user interface to explore fluorescence lifetime data using phasor analysis. The GUI allows for quick and interactive analysis of experimental Fluorescence Lifetime Microscopy (FLIM) data, and can export results for further processing. 
+Fluorescence Lifetime Ultimate Explorer (FLUTE) provides a graphical user interface to explore Fluorescence Lifetime Microscopy (FLIM) using phasor analysis. The GUI allows for quick and interactive analysis of experimental FLIM data, and can export results for further processing. 
 
 An example of various FLIM data visualisation and analyses can be seen here:
 
 <div align="center">
 <img src="icons/Demonstration.PNG" align="center">
 
-*Intensity colourmap with region selection, phase colourmap, comulation colourmap, and fraction colourmap of the same data. Scale bar is 150 um.*
+*Intensity colourmap with region selection, phase lifetime colourmap, modulation lifetime colourmap, and fraction colourmap of the same data. Scale bar is 150 um.*
 </div>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
