@@ -33,7 +33,7 @@ An example of various FLIM data visualisation and analyses can be seen here:
 <div align="center">
 <img src="icons/Demonstration.PNG" align="center">
 
-*Intensity colourmap with region selection, phase lifetime colourmap, modulation lifetime colourmap, and fraction colourmap of the same data. Scale bar is 150 um.*
+*Colourmap with region selection, phase lifetime colourmap, modulation lifetime colourmap, and fraction colourmap of the same data. Scale bar is 150 um.*
 </div>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
