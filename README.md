@@ -65,7 +65,7 @@ To run the code from this github page, run main.py after installing:
 
 ### Prerequisites
 
-Data must be saved as a tiff-stack, where each image of the stack represents a temporal bin of the fluoresvence decay measurement. Example data is avilable in the supplemental data of the release publication.
+FLIM data must be saved as a tiff-stack, where each image of the stack represents a temporal bin of the fluorescence decay measurement. Example data is available in the supplemental data of the release publication.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
