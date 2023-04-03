@@ -81,9 +81,9 @@ class ImageHandler:
 		"""applies the colormap selected to the image"""
 		if self.color_map_select == 0:
 			im = self.original_image.copy()
-			if len(im[~mask]) != 0:
-				im = ((im - np.min(im[~mask])) * (1 / (np.max(im[~mask]) - np.min(im[~mask])) * 255))
-			im = im.astype('uint8')
+			
+			im = ((im - np.min(im[~mask])) / (np.max(im[~mask]) - np.min(im[~mask])) * 255)
+			im = np.clip(im, 0, 255).astype('uint8')
 			im[mask] = 0
 			im = np.stack((im,) * 3, axis=-1)
 			self.displayImage = im
@@ -156,10 +156,11 @@ class ImageHandler:
 			self.displayImage[mask] = [0, 0, 0]
 
 	def compress_image(self, im):
-		"""Converts the image to be normalized and in the proper format to be displayed"""
-		im = ((im - self.min) * (1 / (self.max - self.min) * 255)).astype('uint8')
-		im = np.stack((im,) * 3, axis=-1)
-		self.displayImage = im
+	    """Converts the image to be normalized and in the proper format to be displayed"""
+	    im = ((im - self.min) / (self.max - self.min) * 255)
+	    im = np.clip(im, 0, 255).astype('uint8')
+	    im = np.stack((im,) * 3, axis=-1)
+	    self.displayImage = im
 
 	def update_circle(self, event=0):
 		"""Colors the image based on the coordinates of the circles where the user clicks on the plot"""
