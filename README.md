@@ -72,8 +72,8 @@ FLIM data must be saved as a tiff-stack, where each image of the stack represent
 ## User manual and publication
 
 A detailed user manual is available in the supplemental material of the associated publication:
-
 "FLUTE: a Python GUI for interactive phasor analysis of FLIM data"
+https://www.biorxiv.org/content/10.1101/2023.03.31.534529v1
 
 Please cite this article if you found FLUTE helpful with your data analysis.
 
