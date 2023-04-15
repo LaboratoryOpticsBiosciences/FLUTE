@@ -560,12 +560,12 @@ class MainWindow(QtWidgets.QMainWindow):
 if __name__ == "__main__":
     if platform.system() == "Windows":
         make_dpi_aware()
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
     if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
     if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
     myappid = 'LOB.FLUTE.1.0'  # arbitrary string
-    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
     app = QtWidgets.QApplication(sys.argv)
     app.setWindowIcon(QIcon((resource_path(dir_path + "/icons/logo.ico"))))
     window = MainWindow()
