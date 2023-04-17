@@ -11,14 +11,21 @@
   </a>
 
   <p align="center">
-    An exploration tool for Fluorescence Lifetime Microscopy (FLIM) data
+    a Python GUI for interactive phasor analysis of Fluorescence Lifetime Microscopy (FLIM) data
     <br />
-    <a href="https://github.com/DaleLOB/FLUTE"><strong>Explore the docs »</strong></a>
+    <a href="https://www.biorxiv.org/content/10.1101/2023.03.31.534529v1"><strong>Explore the docs »</strong></a>
     <br />
 
   </p>
 </div>
 
+## User manual and publication
+
+A detailed user manual is available in the supplemental material of the associated publication:
+"FLUTE: a Python GUI for interactive phasor analysis of FLIM data"
+https://www.biorxiv.org/content/10.1101/2023.03.31.534529v1
+
+Please cite this article if you found FLUTE helpful with your data analysis.
 
 <!-- ABOUT THE PROJECT -->
 ## About the project
@@ -69,13 +76,7 @@ FLIM data must be saved as a tiff-stack, where each image of the stack represent
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## User manual and publication
 
-A detailed user manual is available in the supplemental material of the associated publication:
-"FLUTE: a Python GUI for interactive phasor analysis of FLIM data"
-https://www.biorxiv.org/content/10.1101/2023.03.31.534529v1
-
-Please cite this article if you found FLUTE helpful with your data analysis.
 
 
 
