@@ -45,6 +45,15 @@ An example of various FLIM data visualisation and analyses can be seen here:
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+The Fluorescence lifetime imaging microscopy (FLIM) data relative to the publications are in our 
+<a href="https://zenodo.org/record/7846221"><strong>Zenodo repository »</strong></a>
+
+Fluorescein.tif stack contains the fluorescence intensity decay of fluorescein solution used as a calibration with a known lifetime of 4ns.
+Embryo.tif  file contains the fluorescence intensity decay of a zebrafish embryo at 3 days post fertilisation.
+Both files have been acquired with the following parameters:
+    laser repetition rates = 80 MHz
+    bin width = 0.223ns
+    temporal bin number = 56
 
 
 ### Built with
