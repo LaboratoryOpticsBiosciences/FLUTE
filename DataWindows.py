@@ -148,8 +148,6 @@ class Graph(QtWidgets.QMainWindow):
 		self.x_fraction = 0
 		self.y_fraction = 0
 
-		self.plotted = False
-
 		self.dead = False
 
 	def resizeEvent(self, event):
@@ -159,7 +157,7 @@ class Graph(QtWidgets.QMainWindow):
 		"""Plots the xy data given by image handler, and colors based on the thresholds and colormap selected by the
 		user"""
 		# Placing the data into a histogram with reasonably sized binning helps speed up the plotting significantly
-		H, xedges, yedges = np.histogram2d(x_data, y_data, bins=150, range=[[0, 1], [0, 0.6]], normed=True)
+		H, xedges, yedges = np.histogram2d(x_data, y_data, bins=150, range=[[0, 1], [0, 0.6]])
 		H = H.T
 		xcenters = (xedges[:-1] + xedges[1:]) / 2
 		ycenters = (yedges[:-1] + yedges[1:]) / 2
@@ -212,15 +210,14 @@ class Graph(QtWidgets.QMainWindow):
 			im.set_data(xcenters, ycenters, F)
 			im.set_clim(self.fraction_min, self.fraction_max)
 			im2.set_data(xcenters, ycenters, H)
-		if self.plotted == True:
-			self.Plot.canvas.ax.images.pop(0)
-			self.Plot.canvas.ax.images.pop(0)
-		else:
-			self.plotted = True
+		for item in self.Plot.canvas.ax.get_images():
+			item.remove()
 		# Plot one image on top which has all the colours, and one image on the bottom which is just black to show the
 		# points which are outside of the thresholding
-		self.Plot.canvas.ax.images.append(im2)
-		self.Plot.canvas.ax.images.append(im)
+		self.Plot.canvas.ax.add_image(im2)
+		self.Plot.canvas.ax.add_image(im)
+		# list = self.Plot.canvas.ax.get_images()
+
 
 	def set_circle(self, selection):
 		"""Changes the colour of the circle seleted for when the user clicks the plot based on the value in the

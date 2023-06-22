@@ -126,6 +126,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.tableWidget.setColumnWidth(1, self.load_dict['table1Width'])
         self.tableWidget.setColumnWidth(2, self.load_dict['table2Width'])
         self.window_num = 1
+        self.fraction_x = 0; self.fraction_y = 0
+        self.fraction_setting = 'coordinates'
         self.Phi_cal_box.setText("{:.4f}".format(self.load_dict['Phi Cal']))
         self.m_cal_box.setText("{:.4f}".format(self.load_dict['M Cal']))
 
@@ -164,6 +166,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def bulk_open(self):
         """Opens a group of images, applies threshold, saves the data, and then closes the windows right away.
         Allows the user to open hundreds of images without hundreds of windows opening up and cluttering"""
+        self.load_frac_filter = False
         save_folder = ''
         file = QFileDialog.getOpenFileNames(self, 'Open file', str(self.load_dict['FLIM Load']), 'Tiff (*.tif *.tiff)')
         if file[0]: # make sure the user selected a piece of data
@@ -171,6 +174,8 @@ class MainWindow(QtWidgets.QMainWindow):
         if save_folder != '':
             for data in file[0]:
                 self.load_data(data)
+                self.image_arr[-1].fraction_coor_map(self.fraction_x, self.fraction_y)
+                self.save_type = 'all'
                 self.save_selected_data(save_folder)
                 selection = self.tableWidget.selectionModel().selectedRows()
                 for i in selection:
@@ -219,6 +224,7 @@ class MainWindow(QtWidgets.QMainWindow):
         """Opens the window to set the fraction bound parameter, such as 0.4ns for NADH. If the user clicks enter, this
         then changes the coordinates of the fraction bound circles to be centered on the lifetime selected
         by calling self.fraction_col_map()"""
+        self.load_frac_filter = True
         self.fraction = DataWindows.Fraction()
         self.fraction.lifetime.setText(str(self.load_dict["Fraction"]))
         self.fraction.x_coor.setText(str(self.load_dict["FractionX"]))
@@ -237,19 +243,21 @@ class MainWindow(QtWidgets.QMainWindow):
         self.load_dict["Fraction"] = lifetime
         selection = self.tableWidget.selectionModel().selectedRows()
         for i in selection:
-            self.image_arr[i.row()].fraction_lifetime_map(lifetime)
+            self.fraction_x, self.fraction_y = self.image_arr[i.row()].fraction_lifetime_map(lifetime)
+            self.load_dict["FractionX"] = self.fraction_x
+            self.load_dict["FractionY"] = self.fraction_y
         self.frac_entry()
         self.kill_fraction()
 
     def fraction_coor_map(self):
         """Moves the location of teh fraction bound circles to where the user selected based on coordinates"""
-        x_coor = float(self.fraction.x_coor.text().replace(",","."))
-        y_coor = float(self.fraction.y_coor.text().replace(",","."))
-        self.load_dict["FractionX"] = x_coor
-        self.load_dict["FractionY"] = y_coor
+        self.fraction_x = float(self.fraction.x_coor.text().replace(",","."))
+        self.fraction_y = float(self.fraction.y_coor.text().replace(",","."))
+        self.load_dict["FractionX"] = self.fraction_x
+        self.load_dict["FractionY"] = self.fraction_y
         selection = self.tableWidget.selectionModel().selectedRows()
         for i in selection:
-            self.image_arr[i.row()].fraction_coor_map(x_coor, y_coor)
+            self.image_arr[i.row()].fraction_coor_map(self.fraction_x, self.fraction_y)
         self.frac_entry()
         self.kill_fraction()
 
@@ -565,7 +573,9 @@ if __name__ == "__main__":
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
     if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
-    myappid = 'LOB.FLUTE.1.0'  # arbitrary string
+    myappid = 'LOB.FLUTE.2.0'  # arbitrary string
+    if platform.system() == "Windows":
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
     app = QtWidgets.QApplication(sys.argv)
     app.setWindowIcon(QIcon((resource_path(dir_path + "/icons/logo.ico"))))
     window = MainWindow()

@@ -79,6 +79,7 @@ class ImageHandler:
 
 	def colormaps(self, mask):
 		"""applies the colormap selected to the image"""
+		#Greyscale Intensity colourmap
 		if self.color_map_select == 0:
 			im = self.original_image.copy()
 			if len(im[~mask]) != 0:
@@ -88,6 +89,7 @@ class ImageHandler:
 			im = np.stack((im,) * 3, axis=-1)
 			self.displayImage = im
 
+		#TauM colourmap
 		elif self.color_map_select == 1:
 			viridis = cm.get_cmap('jet_r', 20)
 			arr = self.distance_arr.copy()
@@ -106,6 +108,7 @@ class ImageHandler:
 			self.displayImage[..., 2] = np.asarray(col_map[..., 2] * 255).astype(int)
 			self.displayImage[mask] = [0, 0, 0]
 
+		# TauP colourmap
 		elif self.color_map_select == 2:
 			viridis = cm.get_cmap('jet', 20)
 			arr = self.angle_arr.copy()
@@ -125,9 +128,10 @@ class ImageHandler:
 			self.displayImage[..., 2] = np.asarray(col_map[..., 2] * 255).astype(int)
 			self.displayImage[mask] = [0, 0, 0]
 
+		#Jet instensity colourmap
 		elif self.color_map_select == 3:
 			viridis = cm.get_cmap('jet', 20)
-			im = self.original_image.copy()
+			im = np.array(self.original_image.copy(), dtype = np.int64)
 			if len(im[~mask]) != 0:
 				im = ((im - np.min(im[~mask])) * (1 / (np.max(im[~mask]) - np.min(im[~mask]))))
 			im[mask] = 0
@@ -137,14 +141,13 @@ class ImageHandler:
 			self.displayImage[..., 2] = np.asarray(col_map[..., 2] * 255).astype(int)
 			self.displayImage[mask] = [0, 0, 0]
 
+		# Fraction Bound colourmap.
 		elif self.color_map_select == 4:
 			viridis = cm.get_cmap('jet', 20)
 			arr = self.fraction_arr.copy()
 			arr[arr < 0] = 0
 			if len(arr[~mask]) != 0:
-				self.fraction_min = np.min(arr[~mask])
-				self.fraction_max = np.max(arr[~mask])
-				arr = (arr - np.min(arr[~mask])) * (1 / (np.max(arr[~mask]) - np.min(arr[~mask])))
+				arr = (arr - self.fraction_min) * (1 / (self.fraction_max - self.fraction_min))
 			else:
 				self.fraction_min = np.min(arr)
 				self.fraction_max = np.max(arr)
@@ -320,6 +323,7 @@ class ImageHandler:
 		self.fraction_arr = np.sqrt((self.ycoor_map - self.y_fraction) ** 2 + (self.xcoor_map - self.x_fraction) ** 2)
 		self.graph_window.set_fraction(self.x_fraction, self.y_fraction)
 		self.change_colormap(4)
+		return self.x_fraction, self.y_fraction
 
 	def fraction_coor_map(self, x_coor, y_coor):
 		"""Creates the mapping of the coordinates in the plot based on their distance from the lifetime of the
@@ -329,6 +333,10 @@ class ImageHandler:
 		self.fraction_arr = np.sqrt((self.ycoor_map - self.y_fraction) ** 2 + (self.xcoor_map - self.x_fraction) ** 2)
 		self.graph_window.set_fraction(self.x_fraction, self.y_fraction)
 		self.change_colormap(4)
+
+	def set_fraction_coordinates(self, x_coor, y_coor):
+		self.x_fraction = x_coor
+		self.y_fraction = y_coor
 
 	def get_phasor_lifetime_coordinates(self):
 		"""Gets the coordinates for the points along the universal circles, which are used a reference when looking
@@ -365,6 +373,7 @@ class ImageHandler:
 	def save_data(self, file, save_type):
 		"""Saves all the images of the various colormaps, the g and s coordinates, and a file that contains all the
 		parameters used to create the data."""
+		self.graph_window.update_fraction_range(self.fraction_min, self.fraction_max)
 		colormap = self.color_map_select
 		self.color_map_select = 3
 		self.change_colormap(0)
