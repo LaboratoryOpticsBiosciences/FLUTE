@@ -78,7 +78,7 @@ To quickly start using FLUTE, an exe which works on Windows computers without in
 ### Running the code
 To run the code from this github page, run main.py after installing:
 
-```pip install PyQt5, numpy, opencv-python, matplotlib==3.6.3, scikit-image```
+```pip install PyQt5, numpy, opencv-python, matplotlib, scikit-image```
 
 ### Prerequisites
 
