@@ -45,7 +45,7 @@ An example of various FLIM data visualisation and analyses can be seen here:
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-The Fluorescence lifetime imaging microscopy (FLIM) data relative to the publications are in our <a href="https://zenodo.org/record/7846221"><strong>Zenodo repository »</strong></a>
+The Fluorescence lifetime imaging microscopy (FLIM) data relative to the publications are in our <a href="https://zenodo.org/record/8046636"><strong>Zenodo repository »</strong></a>
 <br />
 Fluorescein.tif stack contains the fluorescence intensity decay of fluorescein solution with a known lifetime of 4ns, used as calibration.
 Embryo.tif  file contains the fluorescence intensity decay of a zebrafish embryo at 3 days post fertilisation.
@@ -78,7 +78,7 @@ To quickly start using FLUTE, an exe which works on Windows computers without in
 ### Running the code
 To run the code from this github page, run main.py after installing:
 
-```pip install PyQt5, numpy, opencv-python, matplotlib, scikit-image```
+```pip install PyQt5, numpy, opencv-python, matplotlib==3.6.3, scikit-image```
 
 ### Prerequisites
 
@@ -86,6 +86,17 @@ FLIM data must be saved as a tiff-stack, where each image of the stack represent
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+
+## License
+
+FLUTE is Copyright (C) 2022 FLUTE
+
+FLUTE source code is Free and Open Source Software released under the
+terms of the 3-Clause BSD License (see file [LICENSE] for details).
+
+The prebuilt FLUTE executable is a combined work that contains both
+FLUTE and QT library bindings. It is released under the terms of both
+the 3-Clause BSD License (for the FLUTE part) and the <a href="https://www.gnu.org/licenses/lgpl-3.0.txt"><strong>GNU Lesser General Public License </strong></a> (for the QT part).
 
 
 
