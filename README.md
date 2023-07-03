@@ -73,7 +73,7 @@ With the exe compiled using
 ## Getting started
 
 ### Running the exe
-To quickly start using FLUTE, an exe which works on Windows computers without installing Python is available under releases on the github [here](https://github.com/LaboratoryOpticsBiosciences/FLUTE/releases/tag/v1.0.0).
+To quickly start using FLUTE, an exe which works on Windows computers without installing Python is available under releases on the github [here](https://github.com/LaboratoryOpticsBiosciences/FLUTE/releases/tag/v2.0.0).
 
 ### Running the code
 To run the code from this github page, run main.py after installing:
