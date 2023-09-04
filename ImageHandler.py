@@ -39,7 +39,7 @@ class ImageHandler:
 		self.ycoor_map = self.s.reshape(self.original_image.shape)
 		self.y_adjusted = self.ycoor_map.copy()
 
-		self.graph_window = DataWindows.Graph(self.name, self.freq * self.harmonic)
+		self.graph_window = DataWindows.Graph(self.name)
 		self.graph_window.set_lifetime_points(self.get_phasor_lifetime_coordinates())
 		self.graph_window.show()
 		self.graph_window.plot_data(self.g, self.s)
@@ -317,9 +317,9 @@ class ImageHandler:
 	def fraction_lifetime_map(self, lifetime):
 		"""Creates the mapping of the coordinates in the plot based on their distance from the lifetime of the
 		fluorophore entered by the user. For example, 0.4ns for NADH."""
-		self.x_fraction = 1 / (1 + np.power(2 * np.pi * self.freq / 1000 * self.harmonic * lifetime, 2))
-		self.y_fraction = 2 * np.pi * self.freq / 1000 * self.harmonic * lifetime / (
-				1 + np.power(2 * np.pi * self.freq / 1000 * self.harmonic * lifetime, 2))
+		self.x_fraction = 1 / (1 + np.power(2 * np.pi * self.freq / 1000 * lifetime, 2))
+		self.y_fraction = 2 * np.pi * self.freq / 1000 * lifetime / (
+				1 + np.power(2 * np.pi * self.freq / 1000 * lifetime, 2))
 		self.fraction_arr = np.sqrt((self.ycoor_map - self.y_fraction) ** 2 + (self.xcoor_map - self.x_fraction) ** 2)
 		self.graph_window.set_fraction(self.x_fraction, self.y_fraction)
 		self.change_colormap(4)
@@ -342,9 +342,8 @@ class ImageHandler:
 		"""Gets the coordinates for the points along the universal circles, which are used a reference when looking
 		at the plots"""
 		points = np.asarray([0.5, 1, 2, 3, 4, 8])
-		omega = 2 * np.pi * self.freq / 1000 * self.harmonic
-		x_coors = 1 / (1 + np.power(omega * points, 2))
-		y_coors = omega * points / (1 + np.power(omega * points, 2))
+		x_coors = 1 / (1 + np.power(2 * np.pi * self.freq / 1000 * points, 2))
+		y_coors = 2 * np.pi * self.freq / 1000 * points / (1 + np.power(2 * np.pi * self.freq / 1000 * points, 2))
 		return x_coors, y_coors
 
 	def convolution(self, num_filter):
@@ -411,8 +410,8 @@ class ImageHandler:
 		image = Image.fromarray(self.displayImage)
 
 		if save_type == 'all' or (save_type == 'current' and colormap == 4):
-			image.save(file + '/' + self.name + '_image_Fraction.tif')
-			self.graph_window.save_fig(file + '/' + self.name + '_graph_Fraction.png')
+			image.save(file + '/' + self.name + '_image_Distance.tif')
+			self.graph_window.save_fig(file + '/' + self.name + '_graph_Distance.png')
 		# When you select the colormaps between intensity (0) and Jet (3), the old code changed the value inside of
 		# the function self.change_colormap(). Now, it causes an error if you plug in the same values as what's currenty
 		# displayed. Therefore, for some reason, you need to change the value of self.color_map_select before running
@@ -434,14 +433,14 @@ class ImageHandler:
 		tifffile.imsave(file + '/' + self.name + '_s.tiff', coors.reshape(self.original_image.shape))
 
 		arr = self.angle_arr.copy()
-		omega = 2 * np.pi * self.freq / 1000 * self.harmonic
+		omega = 2 * np.pi * self.freq / 1000
 		tau_p = 1 / omega * arr
 		tau_p[mask] = float("nan")
 		if save_type == 'all' or (save_type == 'current' and colormap == 2):
 			tifffile.imsave(file + '/' + self.name + '_TauP.tiff', tau_p)
 
 		arr = self.distance_arr.copy()
-		omega = 2 * np.pi * self.freq / 1000 * self.harmonic
+		omega = 2 * np.pi * self.freq / 1000
 		tau_m = 1 / omega * np.sqrt(1 / np.power(arr, 2) - 1)
 		tau_m[mask] = float("nan")
 		if save_type == 'all' or (save_type == 'current' and colormap == 1):
@@ -450,7 +449,7 @@ class ImageHandler:
 		frac = self.fraction_arr.copy()
 		frac[mask] = float("nan")
 		if save_type == 'all' or (save_type == 'current' and colormap == 4):
-			tifffile.imsave(file + '/' + self.name + '_Frac.tiff', frac)
+			tifffile.imsave(file + '/' + self.name + '_Dist.tiff', frac)
 
 		save_params = [f'number Of 3x3 Median Filters: {self.num_filter}\n',
 					   f'Intensity Min: {self.min_thresh:.3f}\n',
@@ -459,14 +458,14 @@ class ImageHandler:
 					   f'Phi Max (Deg, ns): ({self.applied_max_ang:.3f}, {1 / omega * np.tan(np.deg2rad(self.applied_max_ang)):.3f})\n',
 					   f'Modulation Min (M, ns): ({self.applied_min_M/100:.3f}, {1 / omega * np.sqrt(1 / np.power(self.applied_min_M/100, 2) - 1):.3f})\n',
 					   f'Modulation Max (M, ns): ({self.applied_max_M/100:.3f}, {1 / omega * np.sqrt(1 / np.power(self.applied_max_M/100, 2) - 1):.3f})\n',
-					   f'Fraction Bound Coordinates (g,s): {self.x_fraction:.3f}, {self.y_fraction:.3f}\n',
-					   f'Fraction Min: {self.fraction_min:.3f}\n',
-					   f'Fraction Max: {self.fraction_max:.3f}\n\n\n',
+					   f'Distance From Coordinates (g,s): {self.x_fraction:.3f}, {self.y_fraction:.3f}\n',
+					   f'Distance Min: {self.fraction_min:.3f}\n',
+					   f'Distance Max: {self.fraction_max:.3f}\n\n\n',
 					   f'Average g Coordinate: {x_avg:.3f}\n',
 					   f'Average s Coordinate: {y_avg:.3f}\n',
 					   f'Average TauP (ns): {np.nanmean(tau_p):.3f}\n',
 					   f'Average TauM (ns): {np.nanmean(tau_m):.3f}\n',
-					   f'Average fraction: {np.nanmean(frac):.3f}\n']
+					   f'Average distance: {np.nanmean(frac):.3f}\n']
 
 		with open(file + '/' + self.name + '_Parameters.txt', 'w') as f:
 			f.writelines(save_params)

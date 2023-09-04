@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Fraction</string>
+   <string>Distance</string>
   </property>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
@@ -37,7 +37,7 @@
     <rect>
      <x>0</x>
      <y>10</y>
-     <width>363</width>
+     <width>387</width>
      <height>131</height>
     </rect>
    </property>

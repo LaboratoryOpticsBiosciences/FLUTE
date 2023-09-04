@@ -451,7 +451,7 @@ QPushButton:hover{
 }</string>
          </property>
          <property name="text">
-          <string>Fraction</string>
+          <string>Distance</string>
          </property>
         </widget>
        </item>
@@ -708,7 +708,7 @@ background-color: rgb(50,50,50);
           <string notr="true">color: #FFFFFF</string>
          </property>
          <property name="text">
-          <string>Frac. Max:</string>
+          <string>Dist. Max:</string>
          </property>
         </widget>
        </item>
@@ -734,7 +734,7 @@ background-color: rgb(50,50,50);
           <string notr="true">color: #FFFFFF</string>
          </property>
          <property name="text">
-          <string>Frac. Min:</string>
+          <string>Dist. Min:</string>
          </property>
         </widget>
        </item>
@@ -1359,7 +1359,7 @@ QPushButton:hover{
           <string notr="true">color: #FFFFFF</string>
          </property>
          <property name="text">
-          <string>Fraction Range</string>
+          <string>Distance Range</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
