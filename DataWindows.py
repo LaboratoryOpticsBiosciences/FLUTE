@@ -83,7 +83,7 @@ class SaveWindow(QtWidgets.QMainWindow):
 
 class Graph(QtWidgets.QMainWindow):
 	"""Displays the MplWidget plot based on the thresholding parameters that the user enters"""
-	def __init__(self, name):
+	def __init__(self, name, MHz):
 		super(Graph, self).__init__()
 
 		self.ui = uic.loadUi(dir_path + "/ui files/Graph.ui", self)
@@ -95,6 +95,8 @@ class Graph(QtWidgets.QMainWindow):
 		self.Plot.canvas.ax.plot(x, y, 'r')
 		self.Plot.canvas.ax.set_xlabel('g', fontsize=12, weight='bold')
 		self.Plot.canvas.ax.set_ylabel('s', fontsize=12, weight='bold')
+
+		self.MHz = '{0:.0f}'.format(MHz)
 
 		# load the range lines horizontally and vertically
 		y = np.tan((np.radians(0)) * x - 0.001)
@@ -216,6 +218,10 @@ class Graph(QtWidgets.QMainWindow):
 		# points which are outside of the thresholding
 		self.Plot.canvas.ax.add_image(im2)
 		self.Plot.canvas.ax.add_image(im)
+		if len(self.MHz) <= 2:
+			self.Plot.canvas.ax.text(0.8, 0.55, self.MHz + " MHz", fontsize=12)
+		else:
+			self.Plot.canvas.ax.text(0.75, 0.55, self.MHz + " MHz", fontsize=12)
 		# list = self.Plot.canvas.ax.get_images()
 
 

@@ -39,7 +39,7 @@ class ImageHandler:
 		self.ycoor_map = self.s.reshape(self.original_image.shape)
 		self.y_adjusted = self.ycoor_map.copy()
 
-		self.graph_window = DataWindows.Graph(self.name)
+		self.graph_window = DataWindows.Graph(self.name, self.freq * self.harmonic)
 		self.graph_window.set_lifetime_points(self.get_phasor_lifetime_coordinates())
 		self.graph_window.show()
 		self.graph_window.plot_data(self.g, self.s)
@@ -317,9 +317,9 @@ class ImageHandler:
 	def fraction_lifetime_map(self, lifetime):
 		"""Creates the mapping of the coordinates in the plot based on their distance from the lifetime of the
 		fluorophore entered by the user. For example, 0.4ns for NADH."""
-		self.x_fraction = 1 / (1 + np.power(2 * np.pi * self.freq / 1000 * lifetime, 2))
-		self.y_fraction = 2 * np.pi * self.freq / 1000 * lifetime / (
-				1 + np.power(2 * np.pi * self.freq / 1000 * lifetime, 2))
+		self.x_fraction = 1 / (1 + np.power(2 * np.pi * self.freq / 1000 * self.harmonic * lifetime, 2))
+		self.y_fraction = 2 * np.pi * self.freq / 1000 * self.harmonic * lifetime / (
+			1 + np.power(2 * np.pi * self.freq / 1000 * self.harmonic * lifetime, 2))
 		self.fraction_arr = np.sqrt((self.ycoor_map - self.y_fraction) ** 2 + (self.xcoor_map - self.x_fraction) ** 2)
 		self.graph_window.set_fraction(self.x_fraction, self.y_fraction)
 		self.change_colormap(4)
@@ -342,8 +342,9 @@ class ImageHandler:
 		"""Gets the coordinates for the points along the universal circles, which are used a reference when looking
 		at the plots"""
 		points = np.asarray([0.5, 1, 2, 3, 4, 8])
-		x_coors = 1 / (1 + np.power(2 * np.pi * self.freq / 1000 * points, 2))
-		y_coors = 2 * np.pi * self.freq / 1000 * points / (1 + np.power(2 * np.pi * self.freq / 1000 * points, 2))
+		omega = 2 * np.pi * self.freq / 1000 * self.harmonic
+		x_coors = 1 / (1 + np.power(omega * points, 2))
+		y_coors = omega * points / (1 + np.power(omega * points, 2))
 		return x_coors, y_coors
 
 	def convolution(self, num_filter):
@@ -433,14 +434,14 @@ class ImageHandler:
 		tifffile.imsave(file + '/' + self.name + '_s.tiff', coors.reshape(self.original_image.shape))
 
 		arr = self.angle_arr.copy()
-		omega = 2 * np.pi * self.freq / 1000
+		omega = 2 * np.pi * self.freq / 1000 * self.harmonic
 		tau_p = 1 / omega * arr
 		tau_p[mask] = float("nan")
 		if save_type == 'all' or (save_type == 'current' and colormap == 2):
 			tifffile.imsave(file + '/' + self.name + '_TauP.tiff', tau_p)
 
 		arr = self.distance_arr.copy()
-		omega = 2 * np.pi * self.freq / 1000
+		omega = 2 * np.pi * self.freq / 1000 * self.harmonic
 		tau_m = 1 / omega * np.sqrt(1 / np.power(arr, 2) - 1)
 		tau_m[mask] = float("nan")
 		if save_type == 'all' or (save_type == 'current' and colormap == 1):
