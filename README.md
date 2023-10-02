@@ -40,7 +40,7 @@ An example of various FLIM data visualisation and analyses can be seen here:
 <div align="center">
 <img src="icons/Demonstration.PNG" align="center">
 
-*Colourmap with region selection, phase lifetime colourmap, modulation lifetime colourmap, and fraction colourmap of the same data. Scale bar is 150 um.*
+*Colormaps of the same data with cursor selection, phase lifetime contrast, modulation lifetime contrast and distance from a known molecular species. Scale bar is 150 um.*
 </div>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -82,7 +82,7 @@ To run the code from this github page, run main.py after installing:
 
 ### Prerequisites
 
-FLIM data must be saved as a tiff-stack, where each image of the stack represents a temporal bin of the fluorescence decay measurement. Example data is available in the supplemental data of the release publication.
+FLIM data must be saved or exported as a tiff-stack, where each image of the stack represents a temporal bin of the fluorescence decay measurement. Example data is available in the supplemental data of the release publication.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
