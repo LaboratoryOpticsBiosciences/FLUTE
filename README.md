@@ -13,7 +13,7 @@
   <p align="center">
     a Python GUI for interactive phasor analysis of Fluorescence Lifetime Microscopy (FLIM) data
     <br />
-    <a href="https://www.biorxiv.org/content/10.1101/2023.03.31.534529v1"><strong>Explore the docs »</strong></a>
+    <a href="https://www.cambridge.org/core/journals/biological-imaging/article/flute-a-python-gui-for-interactive-phasor-analysis-of-flim-data/862F290EC14187741BDA6B58E9868FA2"><strong>Explore the docs »</strong></a>
     <br />
 
   </p>
@@ -22,8 +22,11 @@
 ## User manual and publication
 
 A detailed user manual is available in the supplemental material of the associated publication:
-"FLUTE: a Python GUI for interactive phasor analysis of FLIM data"
-https://www.biorxiv.org/content/10.1101/2023.03.31.534529v1
+<br />
+Gottlieb, D., Asadipour, B., Kostina, P., Ung, T., & Stringari, C. (2023). 
+"FLUTE: A Python GUI for interactive phasor analysis of FLIM data". 
+Biological Imaging, 1-22. 
+    <a href="https://www.cambridge.org/core/journals/biological-imaging/article/flute-a-python-gui-for-interactive-phasor-analysis-of-flim-data/862F290EC14187741BDA6B58E9868FA2"><strong>doi:10.1017/S2633903X23000211 »</strong></a>
 <br />
 Please cite this article if you found FLUTE helpful with your data analysis.
 
