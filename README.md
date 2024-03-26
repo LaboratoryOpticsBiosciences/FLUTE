@@ -60,6 +60,10 @@ Both files have been acquired with the following parameters:
 * temporal bin number = 56
 <br />
 
+Here you can find in open access <a href="https://zenodo.org/records/10839310"><strong>the slides about FLUTE software</strong></a>
+<br />
+
+
 ### Built with
 
 FLUTE mainly depends on the following packages:
