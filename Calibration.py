@@ -1,45 +1,58 @@
-# Calculates the calibration parameters and returns the phi and m offsets
-
-# imports
 import numpy as np
 from skimage import io
 
 
-def get_calibration_parameters(filename, bin_width=0.2208, freq=80, harmonic=1, tau_ref = 4):
-	"""Opens the tiff image file and calculates the fft and gets the center coordinates of the g and s. Returns
-	the angle and distance that these values need to be translated by to place the calibration measurement
-	at the position expected by the user"""
-	im = io.imread(filename)
-	image = np.moveaxis(im, 0, 2)
-	bins = image.shape[2]
-	t_arr = np.linspace(bin_width / 2, bin_width * (bins - 1 / 2), bins)
+def get_calibration_parameters(filename, bin_width=0.2208, freq=80, harmonic=1, tau_ref=4):
+    """Calculates the calibration parameters for a given image file.
 
-	integral = np.sum(image, axis=2).astype(float)
-	integral[integral == 0] = 0.00001
-	g = np.sum(image[:, ...] * np.cos(2 * np.pi * freq / 1000 * harmonic * t_arr[:]), axis=2) / integral
-	s = np.sum(image[:, ...] * np.sin(2 * np.pi * freq / 1000 * harmonic * t_arr[:]), axis=2) / integral
+    Args:
+        filename (str): Path to the TIFF image file.
+        bin_width (float, optional): Width of the time bin in milliseconds. Defaults to 0.2208.
+        freq (int, optional): Stimulation frequency in Hz. Defaults to 80.
+        harmonic (int, optional): Stimulation harmonic. Defaults to 1.
+        tau_ref (int, optional): Refractory period in milliseconds. Defaults to 4.
 
-	g_coor = g.flatten()
-	s_coor = s.flatten()
+    Returns:
+        Tuple[float, float]: The phi and m offsets for the calibration parameters.
+    """
 
-	# Calculates the phi and m that needs to be applied to phasor coordinates to calibrate the software
-	# Known sample parameters based on tau and freq
-	freq = float(freq)
-	tau_ref = float(tau_ref)
-	x_ideal = 1 / (1 + np.power(2 * np.pi * freq / 1000 * tau_ref, 2))
-	y_ideal = 2 * np.pi * freq / 1000 * tau_ref / (1 + np.power(2 * np.pi * freq / 1000 * tau_ref, 2))
+    # Load image data and reshape into (height, width, num_bins) array
+    image = np.moveaxis(io.imread(filename), 0, 2)
+    height, width, num_bins = image.shape
 
-	phi_ideal = np.arctan(y_ideal / x_ideal)
-	m_ideal = np.sqrt(x_ideal ** 2 + y_ideal ** 2)
-	# Our samples coordinates
-	coor_x = np.mean(g_coor)
-	coor_y = np.mean(s_coor)
-	phi_given = np.arctan(coor_y / coor_x)
-	m_given = np.sqrt(coor_x ** 2 + coor_y ** 2)
-	# calibration parameters
-	if coor_x < 0:
-		theta = phi_ideal - np.pi - phi_given
-	else:
-		theta = phi_ideal - phi_given
-	m = m_ideal / m_given
-	return theta, m
+    # Compute time array and integral image
+    t_arr = np.linspace(bin_width / 2, bin_width * (num_bins - 1 / 2), num_bins)
+    integral = np.sum(image, axis=2).astype(float)
+    integral[integral == 0] = 0.00001
+
+    # Compute g and s phasor coordinates
+    cos_term = np.cos(2 * np.pi * freq / 1000 * harmonic * t_arr[:])
+    g = np.sum(image[:, ...] * cos_term, axis=2) / integral
+    sin_term = np.sin(2 * np.pi * freq / 1000 * harmonic * t_arr[:])
+    s = np.sum(image[:, ...] * sin_term, axis=2) / integral
+
+    # Compute mean phasor coordinates of the image
+    g_mean = np.mean(g)
+    s_mean = np.mean(s)
+
+    # Compute ideal phasor coordinates based on known sample parameters
+    omega = 2 * np.pi * freq / 1000
+    x_ideal = 1 / (1 + np.power(omega * tau_ref, 2))
+    y_ideal = omega * tau_ref / (1 + np.power(omega * tau_ref, 2))
+    phi_ideal = np.arctan2(y_ideal, x_ideal)
+    m_ideal = np.linalg.norm([x_ideal, y_ideal])
+
+    # Compute actual phasor coordinates of the image
+    coor_x = g_mean
+    coor_y = s_mean
+    phi_given = np.arctan2(coor_y, coor_x)
+    m_given = np.linalg.norm([coor_x, coor_y])
+
+    # Compute calibration parameters
+    if coor_x < 0:
+        theta = phi_ideal - np.pi - phi_given
+    else:
+        theta = phi_ideal - phi_given
+    m = m_ideal / m_given
+
+    return theta, m
