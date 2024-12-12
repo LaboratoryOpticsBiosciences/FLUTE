@@ -13,22 +13,26 @@
   <p align="center">
     a Python GUI for interactive phasor analysis of Fluorescence Lifetime Microscopy (FLIM) data
     <br />
-    <a href="https://www.cambridge.org/core/journals/biological-imaging/article/flute-a-python-gui-for-interactive-phasor-analysis-of-flim-data/862F290EC14187741BDA6B58E9868FA2"><strong>Explore the docs »</strong></a>
+    <a href="https://www.cambridge.org/core/journals/biological-imaging/article/flute-a-python-gui-for-interactive-phasor-analysis-of-flim-data/862F290EC14187741BDA6B58E9868FA2"><strong>Publication »</strong></a>
     <br />
 
   </p>
 </div>
 
-## User manual and publication
+## Usermanual, Presentation and Interactive Demonstration
 
 A detailed user manual is available in the supplemental material of the associated publication:
-<br />
-Gottlieb, D., Asadipour, B., Kostina, P., Ung, T., & Stringari, C. (2023). 
-"FLUTE: A Python GUI for interactive phasor analysis of FLIM data". 
-Biological Imaging, 1-22. 
-    <a href="https://www.cambridge.org/core/journals/biological-imaging/article/flute-a-python-gui-for-interactive-phasor-analysis-of-flim-data/862F290EC14187741BDA6B58E9868FA2"><strong>doi:10.1017/S2633903X23000211 »</strong></a>
-<br />
+Gottlieb, Asadipour, Kostina, Ung, & Stringari, Biological Imaging (2023) 
+    <a href="https://www.cambridge.org/core/journals/biological-imaging/article/flute-a-python-gui-for-interactive-phasor-analysis-of-flim-data/862F290EC14187741BDA6B58E9868FA2"><strong>"FLUTE: A Python GUI for interactive phasor analysis of FLIM data". »</strong></a>  
 Please cite this article if you found FLUTE helpful with your data analysis.
+
+
+A presentation of FLUTE software is available here in open access <a href="https://zenodo.org/records/10839310"><strong>  GerBi FLIM workshop slides about FLUTE software</strong></a>
+<br />
+
+An interactive demonstration of FLUTE software is available on youtube <a href="https://www.youtube.com/watch?v=q7W1hcb6V_I&t=2005s"><strong> I2K workshop - Interactive phasor analysis of FLIM data using FLUTE</strong></a>
+<br />
+
 
 <!-- ABOUT THE PROJECT -->
 ## About the project
@@ -59,10 +63,6 @@ Both files have been acquired with the following parameters:
 * bin width = 0.223ns
 * temporal bin number = 56
 <br />
-
-Here you can find in open access <a href="https://zenodo.org/records/10839310"><strong>the slides about FLUTE software</strong></a>
-<br />
-
 
 ### Built with
 
