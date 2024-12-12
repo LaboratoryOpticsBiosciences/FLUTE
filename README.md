@@ -19,9 +19,10 @@
   </p>
 </div>
 
-## Usermanual, Presentation and Interactive Demonstration
+## Usermanual and Tutorial
 
 A detailed user manual is available in the supplemental material of the associated publication:
+
 Gottlieb, Asadipour, Kostina, Ung, & Stringari, Biological Imaging (2023) 
     <a href="https://www.cambridge.org/core/journals/biological-imaging/article/flute-a-python-gui-for-interactive-phasor-analysis-of-flim-data/862F290EC14187741BDA6B58E9868FA2"><strong>"FLUTE: A Python GUI for interactive phasor analysis of FLIM data". »</strong></a>  
 Please cite this article if you found FLUTE helpful with your data analysis.
@@ -30,7 +31,7 @@ Please cite this article if you found FLUTE helpful with your data analysis.
 A presentation of FLUTE software is available here in open access <a href="https://zenodo.org/records/10839310"><strong>  GerBi FLIM workshop slides about FLUTE software</strong></a>
 <br />
 
-An interactive demonstration of FLUTE software is available on youtube <a href="https://www.youtube.com/watch?v=q7W1hcb6V_I&t=2005s"><strong> I2K workshop - Interactive phasor analysis of FLIM data using FLUTE</strong></a>
+An interactive tutorial is available on youtube <a href="https://www.youtube.com/watch?v=q7W1hcb6V_I&t=2005s"><strong> I2K workshop - Interactive phasor analysis of FLIM data using FLUTE</strong></a>
 <br />
 
 
