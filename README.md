@@ -34,6 +34,9 @@ A presentation of FLUTE software is available here in open access <a href="https
 An interactive tutorial is available on youtube <a href="https://www.youtube.com/watch?v=q7W1hcb6V_I&t=2005s"><strong> I2K workshop - Interactive phasor analysis of FLIM data using FLUTE</strong></a>
 <br />
 
+A demonstration of the use of FLUTE is available in the <a href="https://www.spiedigitallibrary.org/journals/journal-of-biomedical-optics/volume-30/issue-S2/S23901/Consensus-guidelines-for-cellular-label-free-optical-metabolic-imaging/10.1117/1.JBO.30.S2.S23901.full?tab=ArticleLinkFigureTable"><strong>  Consensus guidelines for cellular label-free optical metabolic imaging: ensuring accuracy and reproducibility in metabolic profiling</strong></a> 
+
+<br />
 
 <!-- ABOUT THE PROJECT -->
 ## About the project
